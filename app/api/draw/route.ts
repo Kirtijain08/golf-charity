@@ -34,7 +34,7 @@ export async function GET() {
     // 💰 4. Prize pool calculation (DEFINE BEFORE USE)
     const totalUsers = users.length;
     const subscriptionAmount = 100;
-    const totalPool = totalUsers * subscriptionAmount;
+    const totalPool= totalUsers * subscriptionAmount;
 
     const jackpotPool = totalPool * 0.4 + jackpot.amount;
 
@@ -118,7 +118,7 @@ export async function GET() {
     // 💾 9. Save draw (SQLite fix)
     await prisma.draw.create({
       data: {
-        numbers: JSON.stringify(drawNumbers),
+        numbers: drawNumbers,
         totalPool,
       },
     });

@@ -258,12 +258,26 @@ const isActive = user?.subscriptionStatus === "active";
   </>
 )}
           {user?.subscriptionStatus !== "active" ? (
-            <button onClick={subscribe} style={styles.button}>
-              Activate
-            </button>
-          ) : (
-            <p style={{ color: "#00ff99" }}>✅ Active</p>
-          )}
+  <>
+    <h3 style={{ marginTop: "10px" }}>Choose Plan</h3>
+
+    <button
+      onClick={() => subscribe("monthly")}
+      style={{ ...styles.button, marginTop: "10px" }}
+    >
+      Monthly ₹100
+    </button>
+
+    <button
+      onClick={() => subscribe("yearly")}
+      style={{ ...styles.button, marginTop: "10px" }}
+    >
+      Yearly ₹1000 (Save 20%)
+    </button>
+  </>
+) : (
+  <p style={{ color: "#00ff99" }}>✅ Active</p>
+)}
 
           <hr style={{ margin: "10px 0" }} />
 
