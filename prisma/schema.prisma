@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  email    String  @unique
+  password String
+  name     String?
+
+  subscriptionStatus String  @default("inactive")
+  subscriptionPlan   String?
+
+  charityId String?
+  charity   Charity? @relation(fields: [charityId], references: [id])
+
+  isWinner      Boolean @default(false)
+  winningAmount Float   @default(0)
+  proof         String?
+  paymentStatus String  @default("pending")
+
+  scores Score[]
+}
+
+model Charity {
+  id    String @id @default(cuid())
+  name  String
+  users User[]
+}
+
+model Score {
+  id        String   @id @default(cuid())
+  value     Int
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Draw {
+  id        String   @id @default(cuid())
+  numbers   Int[]
+  totalPool Float
+  createdAt DateTime @default(now())
+}
+
+model Jackpot {
+  id     String @id @default(cuid())
+  amount Float
+}
