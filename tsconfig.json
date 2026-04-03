@@ -25,11 +25,11 @@
   },
   "include": [
     "next-env.d.ts",
-
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+
   ],
   "exclude": [
     "node_modules"
